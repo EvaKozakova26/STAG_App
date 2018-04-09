@@ -11,6 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.gson.Gson;
+
+import cz.uhk.fim.kozakev1.stagapp.model.CalendarItem;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,6 +33,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //gson
+        CalendarItem calendarItem = new CalendarItem("1.1.2018", "odpada umte");
+        String jsonCalendarItem =     new Gson().toJson(calendarItem);
+        System.out.println(jsonCalendarItem);
+
+        CalendarItem newItem = new Gson().fromJson(jsonCalendarItem, CalendarItem.class);
+
+        System.out.println(newItem.dateFrom + ":" + newItem.description);
+
+
+
     }
 
     @Override
